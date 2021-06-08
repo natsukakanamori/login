@@ -3,9 +3,9 @@
 <%@include file="../header.html"%>
 
 
-
 <p>ログイン画面</p>
-<form action="../Login.Action" method="post">
+${msg}
+<form action="../Login.action" method="post">
 	<table>
 		<tr>
 			<th>ログインID</th>

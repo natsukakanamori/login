@@ -8,25 +8,25 @@ import jp.co.aforce.bean.Customer;
 import jp.co.aforce.dao.CustomerDAO;
 import tool.Action;
 
-public class LoginAction extends Action{
+public class LoginAction extends Action {
 	public String execute(
-			HttpServletRequest request, HttpServletResponse response
-	) throws Exception {
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
 
 		String login = request.getParameter("login");
 		String passward = request.getParameter("passward");
-		CustomerDAO dao=new CustomerDAO();
-		Customer customer=dao.search(login, passward);
+		CustomerDAO dao = new CustomerDAO();
+		Customer customer = dao.search(login, passward);
+		String url = "login.jsp";
 
-		if(customer!=null) {
+		if (customer != null) {
 			session.setAttribute("customer", customer);
-			return "../jsp/success.jsp";
+			url = "success.jsp";
+		} else {
+			request.setAttribute("msg", "idもしくはパスワードが違います。");
 		}
-		request.setAttribute("idが違います。", customer);
-		return "../jsp/login.jsp";
-
+		return url;
 
 	}
 
